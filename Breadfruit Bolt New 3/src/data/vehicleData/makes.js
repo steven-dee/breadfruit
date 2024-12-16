@@ -1,0 +1,53 @@
+// Popular vehicle makes with logos
+export const popularMakes = [
+  { id: 'chevrolet', name: 'Chevrolet', logo: '/logos/chevrolet.svg' },
+  { id: 'ford', name: 'Ford', logo: '/logos/ford.svg' },
+  { id: 'gmc', name: 'GMC', logo: '/logos/gmc.svg' },
+  { id: 'honda', name: 'Honda', logo: '/logos/honda.svg' },
+  { id: 'hyundai', name: 'Hyundai', logo: '/logos/hyundai.svg' },
+  { id: 'jeep', name: 'Jeep', logo: '/logos/jeep.svg' },
+  { id: 'kia', name: 'Kia', logo: '/logos/kia.svg' },
+  { id: 'lincoln', name: 'Lincoln', logo: '/logos/lincoln.svg' },
+  { id: 'subaru', name: 'Subaru', logo: '/logos/subaru.svg' },
+  { id: 'toyota', name: 'Toyota', logo: '/logos/toyota.svg' },
+  { id: 'buick', name: 'Buick', logo: '/logos/buick.svg' },
+  { id: 'cadillac', name: 'Cadillac', logo: '/logos/cadillac.svg' },
+  { id: 'chrysler', name: 'Chrysler', logo: '/logos/chrysler.svg' },
+  { id: 'dodge', name: 'Dodge', logo: '/logos/dodge.svg' },
+  { id: 'lexus', name: 'Lexus', logo: '/logos/lexus.svg' },
+  { id: 'nissan', name: 'Nissan', logo: '/logos/nissan.svg' },
+  { id: 'ram', name: 'Ram', logo: '/logos/ram.svg' },
+  { id: 'volkswagen', name: 'Volkswagen', logo: '/logos/volkswagen.svg' }
+];
+
+// Other vehicle makes for dropdown
+export const otherMakes = [
+  'Acura',
+  'Alfa Romeo',
+  'Aston Martin',
+  'Audi',
+  'Bentley',
+  'BMW',
+  'Ferrari',
+  'Fiat',
+  'Genesis',
+  'Harley-Davidson',
+  'Infiniti',
+  'Jaguar',
+  'Karma Automotive',
+  'Kawasaki',
+  'Lamborghini',
+  'Land Rover',
+  'Maserati',
+  'Mazda',
+  'McLaren Automotive',
+  'Mercedes-Benz',
+  'Mini',
+  'Mitsubishi',
+  'Polestar',
+  'Porsche',
+  'Rivian',
+  'Rolls-Royce',
+  'Tesla',
+  'Volvo'
+];

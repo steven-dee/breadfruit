@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .btn {
+    @apply transition-all duration-200;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-white hover:bg-primary-600;
+    @apply transform hover:scale-[1.02] active:scale-[0.98];
+  }
+
+  .btn-secondary {
+    @apply bg-[#1e2937] text-white hover:bg-primary;
+    @apply transform hover:scale-[1.02] active:scale-[0.98];
+  }
+
+  .question-option {
+    @apply font-medium transition-all duration-200;
+    @apply transform hover:scale-[1.02] active:scale-[0.98];
+  }
+
+  .question-option-selected {
+    @apply bg-primary text-white shadow-lg shadow-primary/30;
+  }
+
+  .question-option-default {
+    @apply bg-[#1e2937] text-white hover:bg-primary;
+  }
+
+  .question-option-mobile {
+    @apply w-full py-4 rounded-xl text-lg;
+  }
+
+  .question-option-desktop {
+    @apply w-24 h-24 rounded-lg text-2xl;
+  }
+}
