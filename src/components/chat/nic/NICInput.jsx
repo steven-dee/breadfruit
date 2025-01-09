@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 
-function NICInput({ value, onChange }) {
-  const [noNIC, setNoNIC] = useState(false);
+function NICInput({ value = '', onChange }) {
+  const [noNIC, setNoNIC] = useState(value === 'NO_NIC');
 
   const handleNICChange = (e) => {
     const input = e.target.value.toUpperCase();

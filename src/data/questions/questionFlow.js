@@ -11,10 +11,7 @@ export const QUESTION_TYPES = {
   PASSPORT_INPUT: 'PASSPORT_INPUT',
   PASSPORT_COUNTRY: 'PASSPORT_COUNTRY',
   DATE_INPUT: 'DATE_INPUT',
-  LICENSE_SELECT: 'LICENSE_SELECT',
-  LICENSE_NUMBER: 'LICENSE_NUMBER',
-  FOREIGN_LICENSE_SELECT: 'FOREIGN_LICENSE_SELECT',
-  FOREIGN_LICENSE_NUMBER: 'FOREIGN_LICENSE_NUMBER'
+  LICENSE_SELECT: 'LICENSE_SELECT'
 };
 
 // Questions Array
@@ -96,33 +93,6 @@ export const questions = [
     type: QUESTION_TYPES.LICENSE_SELECT,
     messages: [{ text: "Do they have a St. Lucian driver's license?", showTriangle: true }],
     field: 'hasLicense'
-  },
-  {
-    id: 'licenseNumber',
-    type: QUESTION_TYPES.LICENSE_NUMBER,
-    messages: [{ text: "What is their driver license number?", showTriangle: true }],
-    field: 'licenseNumber',
-    showIf: (values) => values.hasLicense === 'YES'
-  },
-  {
-    id: 'hasLicenseFromAnotherCountry',
-    type: QUESTION_TYPES.FOREIGN_LICENSE_SELECT,
-    messages: [{ text: "Do they have a valid driver license from another country?", showTriangle: true }],
-    field: 'hasLicenseFromAnotherCountry',
-    showIf: (values) => values.hasLicense === 'NO'
-  },
-  {
-    id: 'foreignLicenseNumber',
-    type: QUESTION_TYPES.FOREIGN_LICENSE_NUMBER,
-    messages: [{ text: "Which country issued their license?", showTriangle: true }],
-    field: 'foreignLicenseNumber',
-    showIf: (values) => values.hasLicenseFromAnotherCountry === 'YES'
-  },
-  {
-    id: 'isVehicleRegisteredUnderYourName',
-    type: QUESTION_TYPES.REGISTERED_UNDER_YOUR_NAME,
-    messages: [{ text: "Is the vehicle registered under your name?", showTriangle: true }],
-    field: 'isVehicleRegisteredUnderYourName',
   }
 ];
 

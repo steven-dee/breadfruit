@@ -16,7 +16,13 @@ export function useQuestionFlow() {
     }
   };
 
-  const currentQuestion = getNextQuestion();
+  const handleBack = () => {
+    if (currentQuestionIndex > 0) {
+      setCurrentQuestionIndex(prev => prev - 1);
+    }
+  };
+
+  const currentQuestion = questions[currentQuestionIndex];
   const isComplete = currentQuestion ? isQuestionComplete(currentQuestion, values) : false;
   const progress = Math.round((currentQuestionIndex / questions.length) * 100);
 
@@ -25,8 +31,8 @@ export function useQuestionFlow() {
     values,
     handleInputChange,
     handleNext,
+    handleBack,
     isComplete,
-    progress,
-    totalQuestions: questions.length
+    progress
   };
 }
