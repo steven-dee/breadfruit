@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply antialiased;
+  }
+}
+
+@layer components {
+  .input-field {
+    @apply w-full px-4 py-3 rounded-lg border border-gray-200;
+    @apply placeholder-gray-400 focus:outline-none focus:border-gray-300;
+  }
+  
+  .next-button {
+    @apply w-full px-6 py-3 bg-gray-200 text-gray-500 rounded-full;
+    @apply font-medium hover:bg-gray-300 transition-colors;
+  }
+  
+  .chat-bubble {
+    @apply bg-gray-100 text-gray-900 px-8 py-6 rounded-[2rem];
+    @apply inline-block max-w-xl;
+  }
+}

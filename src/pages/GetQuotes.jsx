@@ -1,61 +1,148 @@
-import { useState } from 'react';
-import ChatInterface from '../components/chat/ChatInterface';
-import QuoteComparison from '../components/quotes/QuoteComparison';
-import CoverageCustomization from '../components/quotes/CoverageCustomization';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import ChatContainer from '../components/chat/ChatContainer';
+import ChatMessage from '../components/chat/ChatMessage';
+import ChatInputGroup from '../components/chat/ChatInputGroup';
+import ChatButton from '../components/chat/ChatButton';
+import ModelSelect from '../components/chat/model/ModelSelect';
+import MakeSelect from '../components/chat/make/MakeSelect';
+import YearSelect from '../components/chat/year/YearSelect';
+import ColorSelect from '../components/chat/color/ColorSelect';
+import DriverSelect from '../components/chat/driver/DriverSelect';
+import NICInput from '../components/chat/nic/NICInput';
+import PassportInput from '../components/chat/passport/PassportInput';
+import PassportCountrySelect from '../components/chat/passport/PassportCountrySelect';
+import DateInput from '../components/chat/date/DateInput';
+import LicenseSelect from '../components/chat/license/LicenseSelect';
+import { useQuestionFlow } from '../hooks/useQuestionFlow';
+import { QUESTION_TYPES } from '../data/questions/questionFlow';
 
 function GetQuotes() {
-  const [step, setStep] = useState(1);
-  const [quoteData, setQuoteData] = useState(null);
-  const [selectedQuote, setSelectedQuote] = useState(null);
   const navigate = useNavigate();
+  const { 
+    currentQuestion, 
+    values, 
+    handleInputChange, 
+    handleNext, 
+    isComplete,
+    progress 
+  } = useQuestionFlow();
 
-  const handleChatComplete = (data) => {
-    setQuoteData(data);
-    setStep(2);
-  };
+  useEffect(() => {
+    if (!currentQuestion) {
+      navigate('/quotes', { state: { answers: values } });
+    }
+  }, [currentQuestion, values, navigate]);
 
-  const handleQuoteSelect = (quote) => {
-    setSelectedQuote(quote);
-    setStep(3);
-  };
+  if (!currentQuestion) {
+    return null;
+  }
 
-  const handleCoverageSubmit = (customizedQuote) => {
-    navigate('/checkout', { 
-      state: { 
-        quote: customizedQuote,
-        provider: selectedQuote.provider
-      }
-    });
+  const renderQuestionInput = () => {
+    switch (currentQuestion.type) {
+      case QUESTION_TYPES.TEXT_INPUT:
+        return (
+          <ChatInputGroup 
+            values={values} 
+            onChange={handleInputChange} 
+          />
+        );
+      case QUESTION_TYPES.YEAR_SELECT:
+        return (
+          <YearSelect
+            value={values[currentQuestion.field] || ''}
+            onChange={(value) => handleInputChange(currentQuestion.field, value)}
+          />
+        );
+      case QUESTION_TYPES.MAKE_SELECT:
+        return (
+          <MakeSelect
+            value={values[currentQuestion.field] || ''}
+            onChange={(value) => handleInputChange(currentQuestion.field, value)}
+          />
+        );
+      case QUESTION_TYPES.MODEL_SELECT:
+        return (
+          <ModelSelect
+            value={values[currentQuestion.field] || ''}
+            onChange={(value) => handleInputChange(currentQuestion.field, value)}
+          />
+        );
+      case QUESTION_TYPES.COLOR_SELECT:
+        return (
+          <ColorSelect
+            value={values[currentQuestion.field] || ''}
+            onChange={(value) => handleInputChange(currentQuestion.field, value)}
+          />
+        );
+      case QUESTION_TYPES.DRIVER_SELECT:
+        return (
+          <DriverSelect
+            value={values[currentQuestion.field] || ''}
+            onChange={(value) => handleInputChange(currentQuestion.field, value)}
+          />
+        );
+      case QUESTION_TYPES.NIC_INPUT:
+        return (
+          <NICInput
+            value={values[currentQuestion.field] || ''}
+            onChange={(value) => handleInputChange(currentQuestion.field, value)}
+          />
+        );
+      case QUESTION_TYPES.PASSPORT_INPUT:
+        return (
+          <PassportInput
+            value={values[currentQuestion.field] || ''}
+            onChange={(value) => handleInputChange(currentQuestion.field, value)}
+          />
+        );
+      case QUESTION_TYPES.PASSPORT_COUNTRY:
+        return (
+          <PassportCountrySelect
+            value={values[currentQuestion.field] || ''}
+            onChange={(value) => handleInputChange(currentQuestion.field, value)}
+          />
+        );
+      case QUESTION_TYPES.DATE_INPUT:
+        return (
+          <DateInput
+            value={values[currentQuestion.field] || ''}
+            onChange={(value) => handleInputChange(currentQuestion.field, value)}
+          />
+        );
+      case QUESTION_TYPES.LICENSE_SELECT:
+        return (
+          <LicenseSelect
+            value={values[currentQuestion.field] || ''}
+            onChange={(value) => handleInputChange(currentQuestion.field, value)}
+          />
+        );
+      default:
+        return null;
+    }
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        {step === 1 && (
-          <div>
-            <h1 className="text-3xl font-bold text-gray-900 mb-8 text-center">
-              Chat with Tanya to Get Your Quote
-            </h1>
-            <ChatInterface onComplete={handleChatComplete} />
-          </div>
-        )}
-        
-        {step === 2 && quoteData && (
-          <QuoteComparison 
-            quoteData={quoteData}
-            onQuoteSelect={handleQuoteSelect}
+    <ChatContainer>
+      <div className="space-y-6">
+        {currentQuestion.messages.map((message, index) => (
+          <ChatMessage
+            key={index}
+            message={message.text}
+            showTriangle={message.showTriangle}
           />
-        )}
-        
-        {step === 3 && selectedQuote && (
-          <CoverageCustomization 
-            quote={selectedQuote}
-            onSubmit={handleCoverageSubmit}
-          />
-        )}
+        ))}
       </div>
-    </div>
+      <div className="mt-8">
+        {renderQuestionInput()}
+      </div>
+      <ChatButton 
+        onClick={handleNext}
+        disabled={!isComplete}
+      >
+        Next
+      </ChatButton>
+    </ChatContainer>
   );
 }
 

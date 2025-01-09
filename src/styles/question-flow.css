@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .question-container {
+    @apply max-w-xl mx-auto space-y-6;
+  }
+  
+  .input-field {
+    @apply w-full p-3 border border-gray-200 rounded-lg text-gray-900 placeholder-gray-400;
+    @apply focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent;
+  }
+  
+  .next-button {
+    @apply w-full py-3 px-6 bg-gray-200 text-gray-700 rounded-full font-medium;
+    @apply hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed transition-colors;
+  }
+  
+  .chat-bubble {
+    @apply inline-block bg-gray-100 rounded-3xl px-6 py-3 text-gray-900;
+  }
+}

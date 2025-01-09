@@ -26,29 +26,12 @@ export default {
         navy: {
           900: '#1e1e3f'
         }
-      },
-      keyframes: {
-        'float-slow': {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-10px)' }
-        },
-        'float-medium': {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-15px)' }
-        },
-        'float-fast': {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-20px)' }
-        }
-      },
-      animation: {
-        'float-slow': 'float-slow 4s ease-in-out infinite',
-        'float-medium': 'float-medium 3.5s ease-in-out infinite',
-        'float-fast': 'float-fast 3s ease-in-out infinite'
       }
     },
   },
   plugins: [
-    require('@tailwindcss/forms'),
+    require('@tailwindcss/forms')({
+      strategy: 'class',
+    }),
   ],
 }
