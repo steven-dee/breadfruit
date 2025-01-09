@@ -9,12 +9,12 @@ export function useQuestionFlow() {
     setValues(prev => ({ ...prev, [field]: value }));
   };
 
-  // const handleNext = () => {
-  //   const nextIndex = currentQuestionIndex + 1;
-  //   if (nextIndex < questions.length) {
-  //     setCurrentQuestionIndex(nextIndex);
-  //   }
-  // };
+  const handleNext = () => {
+    const nextIndex = currentQuestionIndex + 1;
+    if (nextIndex < questions.length) {
+      setCurrentQuestionIndex(nextIndex);
+    }
+  };
 
   const currentQuestion = getNextQuestion();
   const isComplete = currentQuestion ? isQuestionComplete(currentQuestion, values) : false;
